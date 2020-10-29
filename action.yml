@@ -2,6 +2,8 @@ name: 'SSH and Rsync Setup'
 description: 'Executing remote ssh and rsync commands'
 author: 'specerxi'
 inputs:
+  rsync_flags:
+    description: 'you know'
   dst_host:
     description: 'ssh remote host'
   dst_port:
