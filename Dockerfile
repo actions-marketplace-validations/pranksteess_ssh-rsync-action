@@ -10,8 +10,8 @@ LABEL "com.github.actions.icon"="copy"
 LABEL "com.github.actions.color"="blue"
 
 RUN apk update && \
-  apk add --no-cache --virtual .run-deps rsync=3.1.3-r1 openssh=8.1_p1-r0 && \
-  apk add ca-certificates && \ 
+  apk add --no-cache --virtual .run-deps rsync=3.1.3-r1 && \
+  apk add ca-certificates && \
   apk add --no-cache openssh-client && \
   apk add --no-cache openssl && \
   apk add --no-cache --upgrade bash && \
