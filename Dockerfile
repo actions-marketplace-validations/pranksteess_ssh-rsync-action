@@ -1,6 +1,6 @@
 FROM alpine:3.10
 
-LABEL "maintainer"="maddox <a.najafizadeh@najafizadeh.com>"
+LABEL "maintainer"="specer <specer@blockabc.com>"
 LABEL "repository"="https://github.com/pranksteess/ssh-rsync-action"
 LABEL "version"="1.0.0"
 
@@ -12,6 +12,6 @@ LABEL "com.github.actions.color"="blue"
 RUN apk add --no-cache --virtual .run-deps rsync=3.1.3-r1 openssh=8.1_p1-r0 && \
     rm -rf /var/cache/apk/*
 
-COPY entrypoint.sh /entrypoint.sh
+ADD entrypoint.sh /entrypoint.sh
 
 ENTRYPOINT ["/entrypoint.sh"]
