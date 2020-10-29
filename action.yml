@@ -1,6 +1,9 @@
 name: 'SSH and Rsync Setup'
 description: 'Executing remote ssh and rsync commands'
 author: 'specerxi'
+branding:
+  icon: 'copy'
+  color: 'blue'
 inputs:
   rsync_flags:
     description: 'you know'
