@@ -12,6 +12,6 @@ LABEL "com.github.actions.color"="blue"
 RUN apk add --no-cache --virtual .run-deps rsync=3.1.3-r1 openssh=8.1_p1-r0 && \
     rm -rf /var/cache/apk/*
 
-ADD entrypoint.sh /entrypoint.sh
+COPY entrypoint.sh /entrypoint.sh
 
 ENTRYPOINT ["/entrypoint.sh"]
