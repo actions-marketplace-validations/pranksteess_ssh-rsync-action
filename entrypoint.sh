@@ -45,9 +45,9 @@ executeRsync() {
 
     # scp will fail if COMMAND is empty, this condition protects scp
     #if [[ $COMMAND = *[!\ ]* ]]; then
-      echo "scp -r -o StrictHostKeyChecking=no $INPUT_FILE_NAME $INPUT_BOARD_USER@$INPUT_BOARD_HOST:$INPUT_BOARD_FILE_PATH"
+      echo "rsync $INPUT_RSYNC_FLAGS -e \"ssh -o StrictHostKeyChecking=no -p ${INPUT_BOARD_PORT:-22}\" $INPUT_FILE_NAME $INPUT_BOARD_USER@$INPUT_BOARD_HOST:$INPUT_BOARD_FILE_PATH"
       # scp to board
-      rsync $INPUT_RSYNC_FLAGS -e 'ssh -o StrictHostKeyChecking=no -p ${INPUT_BOARD_PORT:-22}' $INPUT_FILE_NAME $INPUT_BOARD_USER@$INPUT_BOARD_HOST:$INPUT_BOARD_FILE_PATH
+      rsync $INPUT_RSYNC_FLAGS -e "ssh -o StrictHostKeyChecking=no -p ${INPUT_BOARD_PORT:-22}" $INPUT_FILE_NAME $INPUT_BOARD_USER@$INPUT_BOARD_HOST:$INPUT_BOARD_FILE_PATH
       # scp -r -o StrictHostKeyChecking=no $INPUT_FILE_NAME $INPUT_BOARD_USER@$INPUT_BOARD_HOST:$INPUT_BOARD_FILE_PATH
       # scp from board to dst
       ssh -o StrictHostKeyChecking=no -p ${INPUT_BOARD_PORT:-22} $INPUT_BOARD_USER@$INPUT_BOARD_HOST rsync $INPUT_BOARD_FILE_PATH/$INPUT_FILE_NAME $INPUT_DST_USER@$INPUT_DST_HOST:$INPUT_DST_FILE_PATH
