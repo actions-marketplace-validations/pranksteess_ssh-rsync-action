@@ -10,7 +10,7 @@ LABEL "com.github.actions.icon"="copy"
 LABEL "com.github.actions.color"="blue"
 
 RUN apk update && \
-  apk add --no-cache --virtual .run-deps rsync=3.1.3-r1 && \
+  apk add --no-cache --virtual .run-deps rsync && \
   apk add ca-certificates && \
   apk add --no-cache openssh-client && \
   apk add --no-cache openssl && \
