@@ -6,7 +6,7 @@
 [![GitHub release][release badge]][latest release] &nbsp;
 [![GitHub][LICENSE badge]][LICENSE]
 
-
+</div>
 # Description
 Copy files from github workstation to a proxy, then copy them from proxy to your online server
 
