@@ -47,7 +47,7 @@ executeSSH() {
     fi	
   done <<< $LINES
   
-  echo "ssh -o StrictHostKeyChecking=no -p ${INPUT_PROXY_PORT:-22} $INPUT_PROXY_USER@$INPUT_PROXY_HOST \"ssh -o StrictHostKeyChecking=no -p ${INPUT_DST_PORT:-22} $INPUT_DST_USER@$INPUT_DST_HOST \\\\"${COMMANDS%&&*}\\\"\""
+  echo "ssh -o StrictHostKeyChecking=no -p ${INPUT_PROXY_PORT:-22} $INPUT_PROXY_USER@$INPUT_PROXY_HOST \"ssh -o StrictHostKeyChecking=no -p ${INPUT_DST_PORT:-22} $INPUT_DST_USER@$INPUT_DST_HOST \\\"${COMMANDS%&&*}\\\"\""
   ssh -o StrictHostKeyChecking=no -p ${INPUT_PROXY_PORT:-22} $INPUT_PROXY_USER@$INPUT_PROXY_HOST "ssh -o StrictHostKeyChecking=no -p ${INPUT_DST_PORT:-22} $INPUT_DST_USER@$INPUT_DST_HOST \"${COMMANDS%&&*}\""
  }
 
