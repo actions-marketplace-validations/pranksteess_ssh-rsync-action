@@ -27,9 +27,28 @@ executeSSH() {
   fi
   
   local LINES=$1
+  
+  local COMMAND=""	
 
-  echo "ssh -o StrictHostKeyChecking=no -p ${INPUT_PROXY_PORT:-22} $INPUT_PROXY_USER@$INPUT_PROXY_HOST $LINES"
-  ssh -o StrictHostKeyChecking=no -p ${INPUT_PROXY_PORT:-22} $INPUT_PROXY_USER@$INPUT_PROXY_HOST $LINES
+  # holds all commands separated by semi-colon	
+  local COMMANDS=""	
+
+  # this while read each commands in line and	
+  # evaluate each line agains all environment variables	
+  while IFS= read -r LINE; do	
+    LINE=$(eval 'echo "$LINE"')	
+    LINE=$(eval echo "$LINE")	
+    COMMAND=$(echo $LINE)	
+
+    if [ -z "$COMMANDS" ]; then	
+      COMMANDS="$COMMAND"	
+    else	
+      COMMANDS="$COMMANDS;$COMMAND"	
+    fi	
+  done <<< $LINES
+  
+  echo "ssh -o StrictHostKeyChecking=no -p ${INPUT_PROXY_PORT:-22} $INPUT_PROXY_USER@$INPUT_PROXY_HOST ssh -o StrictHostKeyChecking=no -p ${INPUT_DST_PORT:-22} $INPUT_DST_USER@$INPUT_DST_HOST \"$COMMANDS\""
+  ssh -o StrictHostKeyChecking=no -p ${INPUT_PROXY_PORT:-22} $INPUT_PROXY_USER@$INPUT_PROXY_HOST ssh -o StrictHostKeyChecking=no -p ${INPUT_DST_PORT:-22} $INPUT_DST_USER@$INPUT_DST_HOST "$COMMANDS"
  }
 
 executeRsync() {
