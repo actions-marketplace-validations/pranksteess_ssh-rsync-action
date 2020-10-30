@@ -8,31 +8,31 @@ inputs:
   rsync_flags:
     description: 'you know'
   dst_host:
-    description: 'ssh remote host'
+    description: 'online host'
   dst_port:
-    description: 'ssh remote port'
+    description: 'online port'
     default: 22
   dst_user:
-    description: 'ssh user'
-  board_host:
-    description: 'ssh board host'
-  board_port:
-    description: 'ssh board port'
+    description: 'online user'
+  proxy_host:
+    description: ''
+  proxy_port:
+    description: ''
     default: 22
-  board_user:
-    description: 'ssh board user'
-  file_name:
+  proxy_user:
+    description: ''
+  src_file:
     description: 'src file name'
-  board_file_path:
+  proxy_file_path:
     description: 'temporary save path'
   dst_file_path:
-    description: 'remote save path'
+    description: 'online save path'
   key:
     description: 'content of ssh private key. ex raw content of ~/.ssh/id_rsa'
   ssh_before:
-    description: 'execute commands before rsync'
+    description: 'execute commands before rsync on proxy host'
   ssh_after:
-    description: 'execute commands after rsync'
+    description: 'execute commands after rsync on proxy host'
 runs:
   using: 'docker'
   image: 'Dockerfile'
