@@ -30,9 +30,9 @@ inputs:
   key:
     description: 'content of ssh private key. ex raw content of ~/.ssh/id_rsa'
   ssh_before:
-    description: 'execute commands before rsync on proxy host'
+    description: 'execute commands before rsync on online host'
   ssh_after:
-    description: 'execute commands after rsync on proxy host'
+    description: 'execute commands after rsync on online host'
 runs:
   using: 'docker'
   image: 'Dockerfile'
