@@ -28,7 +28,11 @@ Copy files from github workstation to a proxy, then copy them from proxy to your
     proxy_file_path: /tmp/proxy_file_save/
     dst_file_path: /usr/local/service/xxx/bin/
     ssh_after: |
-      ssh -o StrictHostKeyChecking=no -p 22 root@1.1.1.1 "cd /usr/local/service/xxx/bin/ && md5sum xxx.bin && mv xxx xxx.old && mv xxx.new xxx && supervisorctl restart xxx"
+      cd /usr/local/service/xxx/bin/
+      md5sum xxx.bin
+      mv xxx xxx.old
+      mv xxx.new xxx
+      supervisorctl restart xxx
 ```
 
 more details see [action.yml](https://github.com/pranksteess/ssh-rsync-action/blob/main/action.yml)
