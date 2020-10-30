@@ -17,7 +17,7 @@ setupSSH() {
   eval $(ssh-agent)
   ssh-add "$SSH_PATH/deploy_key"
 
-  ssh-keyscan -t rsa $INPUT_BOARD_HOST >> "$SSH_PATH/known_hosts"
+  ssh-keyscan -t rsa $INPUT_PROXY_HOST >> "$SSH_PATH/known_hosts"
 }
 
 executeSSH() {
@@ -28,8 +28,8 @@ executeSSH() {
   
   local LINES=$1
 
-  echo "ssh -o StrictHostKeyChecking=no -p ${INPUT_BOARD_PORT:-22} $INPUT_BOARD_USER@$INPUT_BOARD_HOST $LINES"
-  ssh -o StrictHostKeyChecking=no -p ${INPUT_BOARD_PORT:-22} $INPUT_BOARD_USER@$INPUT_BOARD_HOST $LINES
+  echo "ssh -o StrictHostKeyChecking=no -p ${INPUT_PROXY_PORT:-22} $INPUT_PROXY_USER@$INPUT_PROXY_HOST $LINES"
+  ssh -o StrictHostKeyChecking=no -p ${INPUT_PROXY_PORT:-22} $INPUT_PROXY_USER@$INPUT_PROXY_HOST $LINES
  }
 
 executeRsync() {
@@ -44,11 +44,11 @@ executeRsync() {
     COMMAND=$(echo $LINE)
 
     #if [[ $COMMAND = *[!\ ]* ]]; then
-      echo "rsync $INPUT_RSYNC_FLAGS -e \"ssh -o StrictHostKeyChecking=no -p ${INPUT_BOARD_PORT:-22}\" $INPUT_FILE_NAME $INPUT_BOARD_USER@$INPUT_BOARD_HOST:$INPUT_BOARD_FILE_PATH"
+      echo "rsync $INPUT_RSYNC_FLAGS -e \"ssh -o StrictHostKeyChecking=no -p ${INPUT_PROXY_PORT:-22}\" $INPUT_SRC_FILE $INPUT_PROXY_USER@$INPUT_PROXY_HOST:$INPUT_PROXY_FILE_PATH"
       # scp to board
-      rsync $INPUT_RSYNC_FLAGS -e "ssh -o StrictHostKeyChecking=no -p ${INPUT_BOARD_PORT:-22}" $INPUT_FILE_NAME $INPUT_BOARD_USER@$INPUT_BOARD_HOST:$INPUT_BOARD_FILE_PATH
+      rsync $INPUT_RSYNC_FLAGS -e "ssh -o StrictHostKeyChecking=no -p ${INPUT_PROXY_PORT:-22}" $INPUT_SRC_FILE $INPUT_PROXY_USER@$INPUT_PROXY_HOST:$INPUT_PROXY_FILE_PATH
       # scp from board to dst
-      ssh -o StrictHostKeyChecking=no -p ${INPUT_BOARD_PORT:-22} $INPUT_BOARD_USER@$INPUT_BOARD_HOST rsync $INPUT_BOARD_FILE_PATH/$INPUT_FILE_NAME $INPUT_DST_USER@$INPUT_DST_HOST:$INPUT_DST_FILE_PATH
+      ssh -o StrictHostKeyChecking=no -p ${INPUT_PROXY_PORT:-22} $INPUT_PROXY_USER@$INPUT_PROXY_HOST rsync $INPUT_PROXY_FILE_PATH/$INPUT_SRC_FILE $INPUT_DST_USER@$INPUT_DST_HOST:$INPUT_DST_FILE_PATH
     #fi
   done <<< $LINES
 }
