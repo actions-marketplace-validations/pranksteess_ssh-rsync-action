@@ -15,7 +15,7 @@ Copy files from github workstation to a proxy, then copy them from proxy to your
 
 ```yml
 - name: Copy bin
-  uses: pranksteess/ssh-rsync-action@v1.0
+  uses: pranksteess/ssh-rsync-action@v2.0
           
   with:
     key: ${{ secrets.RSYNC_KEY }}
@@ -57,5 +57,5 @@ more details see [action.yml](https://github.com/pranksteess/ssh-rsync-action/bl
 [marketplace]: https://github.com/marketplace/actions/ssh-and-rsync-setup
 [LICENSE badge]: https://img.shields.io/github/license/Pendect/action-rsyncer.svg
 [LICENSE]: https://github.com/pranksteess/ssh-rsync-action/blob/main/LICENSE
-[release badge]: https://img.shields.io/badge/release-v1.0-blue
+[release badge]: https://img.shields.io/badge/release-v2.0-blue
 [latest release]: https://github.com/pranksteess/ssh-rsync-action/releases/latest
