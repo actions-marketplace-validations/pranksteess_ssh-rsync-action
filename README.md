@@ -29,7 +29,7 @@ Copy files from github workstation to a proxy, then copy them from proxy to your
     dst_file_path: /usr/local/service/xxx/bin/
     ssh_after: |
       cd /usr/local/service/xxx/bin/
-      md5sum xxx.bin
+      md5sum xxx.new
       mv xxx xxx.old
       mv xxx.new xxx
       supervisorctl restart xxx
