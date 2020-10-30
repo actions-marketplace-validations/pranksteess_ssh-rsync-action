@@ -1,5 +1,5 @@
-name: 'SSH and Rsync Setup'
-description: 'Executing remote ssh and rsync commands'
+name: 'Use Proxy to SSH and Rsync'
+description: 'Github -> proxy -> server'
 author: 'specerxi'
 branding:
   icon: 'copy'
