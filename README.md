@@ -1,17 +1,17 @@
 <div align="center">
 
 # SSH Rsync Action
-
 [![Action on GH marketplace][marketplace badge]][marketplace] &nbsp;
 [![GitHub release][release badge]][latest release] &nbsp;
 [![GitHub][LICENSE badge]][LICENSE]
-
 </div>
-# Description
+
+
+## Description
 Copy files from github workstation to a proxy, then copy them from proxy to your online server
 
 
-# Usage
+## Usage
 
 ```yml
 - name: Copy bin
