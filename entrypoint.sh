@@ -62,13 +62,14 @@ executeRsync() {
     LINE=$(eval echo "$LINE")
     COMMAND=$(echo $LINE)
 
-    #if [[ $COMMAND = *[!\ ]* ]]; then
+    if [ -z "$INPUT_CACHE" ]; then
       echo "rsync $INPUT_RSYNC_FLAGS -e \"ssh -o StrictHostKeyChecking=no -p ${INPUT_PROXY_PORT:-22}\" $INPUT_SRC_FILE $INPUT_PROXY_USER@$INPUT_PROXY_HOST:$INPUT_PROXY_FILE_PATH"
       # scp to board
       rsync $INPUT_RSYNC_FLAGS -e "ssh -o StrictHostKeyChecking=no -p ${INPUT_PROXY_PORT:-22}" $INPUT_SRC_FILE $INPUT_PROXY_USER@$INPUT_PROXY_HOST:$INPUT_PROXY_FILE_PATH
       # scp from board to dst
-      ssh -o StrictHostKeyChecking=no -p ${INPUT_PROXY_PORT:-22} $INPUT_PROXY_USER@$INPUT_PROXY_HOST rsync $INPUT_PROXY_FILE_PATH/$INPUT_SRC_FILE $INPUT_DST_USER@$INPUT_DST_HOST:$INPUT_DST_FILE_PATH
-    #fi
+    fi
+    ssh -o StrictHostKeyChecking=no -p ${INPUT_PROXY_PORT:-22} $INPUT_PROXY_USER@$INPUT_PROXY_HOST rsync $INPUT_PROXY_FILE_PATH/$INPUT_SRC_FILE $INPUT_DST_USER@$INPUT_DST_HOST:$INPUT_DST_FILE_PATH
+
   done <<< $LINES
 }
 
