@@ -23,6 +23,8 @@ inputs:
     description: ''
   src_file:
     description: 'src file name'
+  cache:
+    description: 'use the file last build, rsync to proxy host'
   proxy_file_path:
     description: 'temporary save path'
   dst_file_path:
